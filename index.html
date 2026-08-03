@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Laurita ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+
+body{
+background:linear-gradient(135deg,#ff4e8b,#ff8fb3);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+color:white;
+text-align:center;
+}
+
+.card{
+width:90%;
+max-width:450px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(12px);
+padding:30px;
+border-radius:25px;
+}
+
+h1{
+font-size:40px;
+margin-bottom:15px;
+}
+
+img{
+width:100%;
+height:320px;
+object-fit:cover;
+border-radius:20px;
+margin:15px 0;
+}
+
+#countdown{
+font-size:30px;
+font-weight:bold;
+margin:20px 0;
+}
+
+button{
+padding:15px 28px;
+border:none;
+border-radius:40px;
+font-size:18px;
+cursor:pointer;
+margin:8px;
+}
+
+#si{
+background:#ff2d75;
+color:white;
+}
+
+#no{
+background:white;
+color:#ff2d75;
+position:absolute;
+}
+
+#pregunta{
+display:none;
+}
+
+#mensajeFinal{
+display:none;
+font-size:28px;
+}
+
+a button{
+background:#ff2d75;
+color:white;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>❤️ Laurita ❤️</h1>
+
+<p>Tengo algo muy importante que decirte...</p>
+
+<div id="countdown"></div>
+
+<div id="contenido" style="display:none;">
+
+<img id="foto" src="foto1.jpg">
+
+<p id="texto">
+Desde que llegaste a mi vida todo cambió...
+</p>
+
+<br>
+
+<a href="https://www.youtube.com/results?search_query=Hoobastank+The+Reason" target="_blank">
+<button>🎵 Escuchar nuestra canción</button>
+</a>
+
+<br><br>
+
+<div id="pregunta">
+
+<h2>¿Quieres ser mi novia? ❤️</h2>
+
+<br>
+
+<button id="si">Sí ❤️</button>
+
+<button id="no">No 😅</button>
+
+</div>
+
+<div id="mensajeFinal">
+
+❤️🥹
+
+<h2>¡Gracias por hacerme tan feliz!</h2>
+
+<h3>Te quiero muchísimo Laurita ❤️</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const fecha=new Date("2026-08-03T17:00:00");
+
+const countdown=document.getElementById("countdown");
+
+const contenido=document.getElementById("contenido");
+
+const pregunta=document.getElementById("pregunta");
+
+const fotos=[
+"foto1.jpg",
+"foto2.jpg",
+"foto3.jpg",
+"foto4.jpg"
+];
+
+let i=0;
+
+setInterval(()=>{
+i=(i+1)%fotos.length;
+document.getElementById("foto").src=fotos[i];
+},3000);
+
+function actualizar(){
+
+const ahora=new Date();
+
+const diferencia=fecha-ahora;
+
+if(diferencia<=0){
+
+countdown.style.display="none";
+
+contenido.style.display="block";
+
+pregunta.style.display="block";
+
+return;
+
+}
+
+const h=Math.floor(diferencia/1000/60/60);
+
+const m=Math.floor((diferencia/1000/60)%60);
+
+const s=Math.floor((diferencia/1000)%60);
+
+countdown.innerHTML=`⏳ ${h}h ${m}m ${s}s`;
+
+}
+
+setInterval(actualizar,1000);
+
+actualizar();
+
+const no=document.getElementById("no");
+
+no.addEventListener("mouseover",()=>{
+
+no.style.left=Math.random()*(window.innerWidth-120)+"px";
+
+no.style.top=Math.random()*(window.innerHeight-60)+"px";
+
+});
+
+document.getElementById("si").onclick=()=>{
+
+pregunta.style.display="none";
+
+document.getElementById("mensajeFinal").style.display="block";
+
+for(let i=0;i<150;i++){
+
+let c=document.createElement("div");
+
+c.innerHTML="❤️";
+
+c.style.position="fixed";
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.top="-20px";
+
+c.style.fontSize=(20+Math.random()*20)+"px";
+
+c.style.animation="caer 5s linear forwards";
+
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),5000);
+
+}
+
+}
+
+</script>
+
+<style>
+@keyframes caer{
+to{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+}
+</style>
+
+</body>
+</html>
